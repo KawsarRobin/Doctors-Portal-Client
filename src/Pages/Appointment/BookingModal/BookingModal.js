@@ -58,7 +58,7 @@ const BookingModal = ({
       date: date.toLocaleDateString(),
     };
 
-    fetch(`http://localhost:5000/appointments`, {
+    fetch(`http://intense-cove-70929.herokuapp.com/appointments`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',

@@ -14,7 +14,7 @@ const CheckoutForm = (props) => {
   const [processing, setProcessing] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:5000/create-payment-intent', {
+    fetch('http://intense-cove-70929.herokuapp.com/create-payment-intent', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -75,7 +75,7 @@ const CheckoutForm = (props) => {
         last4: paymentMethod.card.last4,
         transaction: paymentIntent.client_secret.slice('_secret'),
       };
-      const url = `http://localhost:5000/appointments/${_id}`;
+      const url = `http://intense-cove-70929.herokuapp.com/appointments/${_id}`;
       fetch(url, {
         method: 'PUT',
         headers: {
