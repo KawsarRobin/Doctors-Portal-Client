@@ -25,7 +25,7 @@ const useFirebase = () => {
   const googleProvider = new GoogleAuthProvider();
 
   //Create new user
-  const registerUser = (email, password, name, history) => {
+  const registerUser = (email, password, name, navigate) => {
     setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
@@ -40,7 +40,7 @@ const useFirebase = () => {
         })
           .then(() => {})
           .catch((error) => {});
-        history.replace('/');
+        navigate('/');
       })
       .catch((error) => {
         setAuthError(error.message);
@@ -49,12 +49,12 @@ const useFirebase = () => {
   };
 
   //Log in with email
-  const logInWithEmail = (email, password, location, history) => {
+  const logInWithEmail = (email, password, location, navigate) => {
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         const destination = location?.state?.from || '/';
-        history.replace(destination);
+        navigate(destination);
         setAuthError('');
       })
       .catch((error) => {
@@ -64,14 +64,14 @@ const useFirebase = () => {
   };
 
   //Sign in with google
-  const logInWithGoogle = (location, history) => {
+  const logInWithGoogle = (location, navigate) => {
     setIsLoading(true);
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const user = result.user;
         saveUser(user.email, user.displayName, 'PUT');
         const destination = location?.state?.from || '/';
-        history.replace(destination);
+        navigate(destination);
         setAuthError('');
       })
       .catch((error) => {
@@ -113,7 +113,7 @@ const useFirebase = () => {
   const saveUser = (email, displayName, method) => {
     const user = { email, displayName };
 
-    fetch('http://intense-cove-70929.herokuapp.com/users', {
+    fetch('https://intense-cove-70929.herokuapp.com/users', {
       method: method,
       headers: {
         'content-type': 'application/json',
@@ -124,7 +124,7 @@ const useFirebase = () => {
 
   //Admin check
   useEffect(() => {
-    fetch(`http://intense-cove-70929.herokuapp.com/users/${user.email}`)
+    fetch(`https://intense-cove-70929.herokuapp.com/users/${user.email}`)
       .then((res) => res.json())
       .then((data) => setAdmin(data.admin));
   }, [user.email]);

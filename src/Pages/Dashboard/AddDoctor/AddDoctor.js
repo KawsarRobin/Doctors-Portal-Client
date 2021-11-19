@@ -18,7 +18,7 @@ const AddDoctor = () => {
     formData.append('email', email);
     formData.append('image', image);
 
-    fetch('http://intense-cove-70929.herokuapp.com/doctors', {
+    fetch('https://intense-cove-70929.herokuapp.com/doctors', {
       method: 'POST',
       body: formData,
     })

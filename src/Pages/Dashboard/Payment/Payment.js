@@ -14,7 +14,7 @@ const Payment = () => {
 
   useEffect(() => {
     fetch(
-      `http://intense-cove-70929.herokuapp.com/appointments/${appointmentId}`
+      `https://intense-cove-70929.herokuapp.com/appointments/${appointmentId}`
     )
       .then((res) => res.json())
       .then((data) => setAppointment(data));

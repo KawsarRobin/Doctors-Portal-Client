@@ -14,7 +14,7 @@ const MakeAdmin = () => {
     const user = { email };
     e.preventDefault();
 
-    fetch('http://intense-cove-70929.herokuapp.com/users/makeAdmin', {
+    fetch('https://intense-cove-70929.herokuapp.com/users/makeAdmin', {
       method: 'PUT',
       headers: {
         authorization: `bearer ${token}`,

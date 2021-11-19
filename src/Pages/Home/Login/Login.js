@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@mui/material';
 import React, { useState } from 'react';
-import { NavLink, useHistory, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import login from '../../../images/login.png';
 
@@ -17,7 +17,7 @@ const Login = () => {
   const { user, isLoading, authError, logInWithEmail, logInWithGoogle } =
     useAuth();
   const location = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleOnChange = (e) => {
     const Field = e.target.name;
@@ -28,13 +28,13 @@ const Login = () => {
   };
 
   const handleGoogleSingIn = () => {
-    logInWithGoogle(location, history);
+    logInWithGoogle(location, navigate);
   };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
-    logInWithEmail(loginData.email, loginData.password, location, history);
+    logInWithEmail(loginData.email, loginData.password, location, navigate);
   };
 
   return (

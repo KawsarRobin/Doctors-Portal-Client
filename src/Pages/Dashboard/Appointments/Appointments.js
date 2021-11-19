@@ -15,7 +15,7 @@ const Appointments = ({ date }) => {
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
-    const url = `http://intense-cove-70929.herokuapp.com/appointments?email=${user.email}&date=${date}`;
+    const url = `https://intense-cove-70929.herokuapp.com/appointments?email=${user.email}&date=${date}`;
     fetch(url, {
       header: {
         authorization: `bearer ${token}`,
